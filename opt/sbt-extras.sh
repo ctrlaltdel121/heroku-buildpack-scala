@@ -278,9 +278,9 @@ download_url() {
 
   mkdir -p "${jar%/*}" && {
     if command -v curl >/dev/null 2>&1; then
-      curl --fail --silent --location "$url" --output "$jar"
+      curl --fail --location "$url" --output "$jar"
     elif command -v wget >/dev/null 2>&1; then
-      wget -q -O "$jar" "$url"
+      wget  -O "$jar" "$url"
     fi
   } && [[ -r "$jar" ]]
 }
