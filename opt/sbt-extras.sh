@@ -302,6 +302,9 @@ acquire_sbt_jar() {
 
     download_url "${jar_url}" "${sbt_jar}"
 
+    echo "sbt download location for $sbt_jar"
+    ls $sbt_jar
+
     case "${sbt_version}" in
       0.*)
         vlog "SBT versions < 1.0 do not have published MD5 checksums, skipping check"
@@ -573,6 +576,8 @@ EOM
   exit 1
 }
 
+
+
 if [[ -n "$noshare" ]]; then
   for opt in ${noshare_opts}; do
     addJava "$opt"
@@ -605,6 +610,8 @@ fi
 
 # traceLevel is 0.12+
 [[ -n "$trace_level" ]] && setTraceLevel
+
+echo "SBT JAR: $sbt_jar"
 
 execRunner "$java_cmd" \
   "${extra_jvm_opts[@]}" \
